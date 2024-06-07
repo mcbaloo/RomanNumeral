@@ -33,6 +33,9 @@ namespace RomanNumeral.Utilities
             if (!IsOnlyLetters(value))
                 throw new ArgumentException("Input must contain only alphabetic characters.");
 
+            if (!IsValidRomanNumeral(value))
+                throw new ArgumentException("Invalid character found in the input string");
+
             return RomanNumeralToNumber(value);
         }
         #endregion
@@ -47,6 +50,14 @@ namespace RomanNumeral.Utilities
         {
             if (string.IsNullOrWhiteSpace(value)) return false;
             return value.All(char.IsLetter);
+        }
+        private bool IsValidRomanNumeral(string value)
+        {
+            if (!value.All(c => RomanNumeralsDict.ContainsValue(c.ToString())))
+            {
+                return false;
+            }
+            return true;
         }
         private string NumberToRomanNumeral(int number)
         {

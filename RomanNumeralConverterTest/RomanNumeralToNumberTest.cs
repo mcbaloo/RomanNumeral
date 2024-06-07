@@ -35,5 +35,13 @@ namespace RomanNumeral.Test
             //Act & Assert
             Assert.Throws<ArgumentException>(() => _converter.RomanToNumber(value));
         }
+        [TestCase("UX")]
+        [TestCase("MDU")]
+        public void Convert_InvalidRomanNumeralFormat_ThrowsArgumentException(string value)
+        {
+
+            //Act & Assert
+            Assert.Throws<ArgumentException>(() => _converter.RomanToNumber(value));
+        }
     }
 }
